@@ -1,11 +1,11 @@
 import requests
-#import fake_useragent
 from bs4 import BeautifulSoup
 import time
 import math
 import random
 import datetime
 import vk_api
+import os
 # -*- coding: utf8 -*
 
 
@@ -13,7 +13,7 @@ import vk_api
 
 #Раз в час срабатывает. Заходит на сайт знай.бай и берёт Дз.
 #Раз в неделю в ночь с Вс на Пн, переносит Дз с 2-ой недели 1-ую и чистит 2-ую.
-def GetInfo(AllInfo,Gid_2):
+def GetInfo(AllInfo,data,Gid_2):
     global WeekNow
     global First
     Reload = False
@@ -50,7 +50,6 @@ def GetInfo(AllInfo,Gid_2):
                 print('Error_1')
 
         URL = 'https://znaj.by/Account/LogOnInternalWithIpay'   #входные данные
-        data = {'UserName': 'LSDANDSDL', 'Password': 'qaz324SL'}
         user = 'user'#fake_useragent.UserAgent().random
         header = {'User-Agent' : user}
         session = requests.Session()
@@ -484,9 +483,13 @@ def SendMessage(GId,vk,Result):
 Week_1 = {'1' : ['','','','','',''], '2' : ['','','','','',''], '3' : ['','','','','','',''], '4' : ['','','','','','',''], '5' : ['','','','','','']}
 Week_2 = {'1' : ['','','','','',''], '2' : ['','','','','',''], '3' : ['','','','','','',''], '4' : ['','','','','','',''], '5' : ['','','','','','']}
 AllInfo = [Week_1, Week_2]
-            
-my_token = '8850f4386b2db7b79e7fdc99f71e4cd59e4e445996592d8bad877d1eaed48a9251010a6a6a14c726281cd'  #токен VK
-GId = 2000000047   #Peer_id беседы VK | для основы 2000000047 | для тестов 2000000058
+     
+my_token = os.environ.get('tok')  #токен VK
+passw = os.environ.get('passw')
+name = os.environ.get('name')
+
+data = {'UserName': name, 'Password': passw}     
+GId = 2000000058   #Peer_id беседы VK | для основы 2000000047 | для тестов 2000000058
 Gid_2 = 2000000059   #Для облачной БД
 StartTime = time.time()     #Начальное время
 Num = -1      #Колличество раз, обновления базы данных -1 для первого обновления
@@ -569,7 +572,7 @@ while True:
         if WeekNow != 1:
             First = True
         Num = Num + 1        #Количество обновлений базы данных
-        AllInfo = GetInfo(AllInfo,Gid_2)     #Обновление базы данных
+        AllInfo = GetInfo(AllInfo,data,Gid_2)     #Обновление базы данных
         print('Завершение ' + str(Num + 1) + '-ого обновления базы данных... \nИнформация для разработчика: \n')
 
     else:
