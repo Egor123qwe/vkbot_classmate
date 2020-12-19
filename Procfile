@@ -1,1 +1,1 @@
-worker: python ForTestHost.py
+worker: python fortesthost.py
