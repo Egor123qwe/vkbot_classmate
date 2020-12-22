@@ -361,7 +361,7 @@ def Completed(Message,AllInfo,CheckInfo,GId,vk,Subj,About,Pass,Gid_2):
 
     elif CheckInfo[1] == 'Random':
         People = random.randint(1,23)
-        if People == 22:
+        while People == 22:
             People == random.randint(1,23)
         Result = People
 
