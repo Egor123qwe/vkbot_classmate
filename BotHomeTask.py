@@ -360,7 +360,9 @@ def Completed(Message,AllInfo,CheckInfo,GId,vk,Subj,About,Pass,Gid_2):
         Result = List(Subj)
 
     elif CheckInfo[1] == 'Random':
-        People = random.randint(1,23)
+        People == random.randint(1,23)
+        While (People == 22):
+            People = random.randint(1,23)
         Result = People
 
     elif CheckInfo[1] == 'Sosi':
