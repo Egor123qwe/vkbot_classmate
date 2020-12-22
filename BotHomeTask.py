@@ -360,10 +360,10 @@ def Completed(Message,AllInfo,CheckInfo,GId,vk,Subj,About,Pass,Gid_2):
         Result = List(Subj)
 
     elif CheckInfo[1] == 'Random':
-        People = random.randint(1,12)
-        while ((People == 11) or (People == 6)):
-            People = random.randint(1,12)
-        Result = 'Номер из группы 1 по англисскому языку: ' + str(People)
+        People = random.randint(1,23)
+        #while ((People == 22) or (People == 15)):
+            #People = random.randint(1,23)
+        Result = 'Номер: ' + str(People)
 
     elif CheckInfo[1] == 'Sosi':
         Result = 'Было бы что)&#128526;'
@@ -497,7 +497,7 @@ passw = os.environ.get('passw')
 name = os.environ.get('name')
 
 data = {'UserName': name, 'Password': passw}     
-GId = 2000000047   #Peer_id беседы VK | для основы 2000000047 | для тестов 2000000058
+GId = 2000000058   #Peer_id беседы VK | для основы 2000000047 | для тестов 2000000058
 Gid_2 = 2000000059   #Для облачной БД
 StartTime = time.time()     #Начальное время
 Num = -1      #Колличество раз, обновления базы данных -1 для первого обновления
