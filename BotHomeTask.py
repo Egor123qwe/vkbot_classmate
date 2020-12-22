@@ -360,10 +360,10 @@ def Completed(Message,AllInfo,CheckInfo,GId,vk,Subj,About,Pass,Gid_2):
         Result = List(Subj)
 
     elif CheckInfo[1] == 'Random':
-        People = random.randint(1,23)
-        while ((People == 22) or (People == 15)):
+        People = random.randint(1,12)
+        while ((People == 12) or (People == 6)):
             People = random.randint(1,23)
-        Result = People
+        Result = 'Номер из группы 1 по англисскому языку: ' + People
 
     elif CheckInfo[1] == 'Sosi':
         Result = 'Было бы что)&#128526;'
