@@ -133,6 +133,8 @@ def CheckMessage(Message, AllInfo):
             Case = 'Form'
         elif Message[4:8].lower() == 'list':
             Case = 'List'
+        elif Message[4:10].lower() == 'random':
+            Case = 'Random'
 
             ############## Удалить после НГ
         elif Message[4:8].lower() == 'ёлка':
@@ -356,6 +358,15 @@ def Completed(Message,AllInfo,CheckInfo,GId,vk,Subj,About,Pass,Gid_2):
 
     elif CheckInfo[1] == 'List':
         Result = List(Subj)
+
+    elif CheckInfo[1] == 'Random':
+        def Rand():
+            People = random.randint(1, 23)
+            return People
+        Result = 1
+        While Result != 22:
+            Result = Rand()
+
 
     elif CheckInfo[1] == 'Sosi':
         Result = 'Было бы что)&#128526;'
