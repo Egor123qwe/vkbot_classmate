@@ -362,7 +362,7 @@ def Completed(Message,AllInfo,CheckInfo,GId,vk,Subj,About,Pass,Gid_2):
     elif CheckInfo[1] == 'Random':
         People = random.randint(1,12)
         while ((People == 12) or (People == 6)):
-            People = random.randint(1,23)
+            People = random.randint(1,12)
         Result = 'Номер из группы 1 по англисскому языку: ' + People
 
     elif CheckInfo[1] == 'Sosi':
