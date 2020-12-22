@@ -360,13 +360,8 @@ def Completed(Message,AllInfo,CheckInfo,GId,vk,Subj,About,Pass,Gid_2):
         Result = List(Subj)
 
     elif CheckInfo[1] == 'Random':
-        def Rand():
-            People = random.randint(1, 23)
-            return People
-        Result = 1
-        While Result != 22:
-            Result = Rand()
-
+        People = randint(1,23)
+        Result = People
 
     elif CheckInfo[1] == 'Sosi':
         Result = 'Было бы что)&#128526;'
