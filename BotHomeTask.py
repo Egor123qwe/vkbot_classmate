@@ -498,7 +498,7 @@ passw = os.environ.get('passw')
 name = os.environ.get('name')
 
 data = {'UserName': name, 'Password': passw}     
-GId = 2000000058   #Peer_id беседы VK | для основы 2000000047 | для тестов 2000000058
+GId = 2000000047   #Peer_id беседы VK | для основы 2000000047 | для тестов 2000000058
 Gid_2 = 2000000059   #Для облачной БД
 StartTime = time.time()     #Начальное время
 Num = -1      #Колличество раз, обновления базы данных -1 для первого обновления
