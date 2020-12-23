@@ -181,17 +181,19 @@ def CheckMessage(Message, AllInfo):
                         Auto_week = True
                 else:
                     Auto_week = True
+                    
+                if Case != 'Error':
+                    if Auto_week == True:
+                        if WeekTo == False: 
+                            Case = Case + '0'
+                        else: 
+                            Case = Case + '1'
 
-                if Auto_week == True:
-                    if WeekTo == False: 
-                        Case = Case + '0'
-                    else: 
-                        Case = Case + '1'
-
-            if (Message[8:13] == 'clean') or (Message[12:17] == 'clean') or (Message[10:15] == 'clean'):
-                Case = Case + '0'
-            else:
-                Case = Case + '1'
+            if Case != 'Error':
+                if (Message[8:13] == 'clean') or (Message[12:17] == 'clean') or (Message[10:15] == 'clean'):
+                    Case = Case + '0'
+                else:
+                    Case = Case + '1'
 
 
         elif Message[4:8].lower() == 'week':
@@ -201,8 +203,11 @@ def CheckMessage(Message, AllInfo):
                 if (WeekNomber.isdigit() == True):
                     if int(WeekNomber) == 1:
                         Case = Case + '1'
-                    else:
+                    elif int(WeekNomber) == 0:
                         Case = Case + '0'
+                    else:
+                        Case = 'Error'
+                        FailMassege = 'Ошибка: Вы черепашка ниндзя... Часть команды с днём заполнена неправильно... '
                 else:
                     Case = Case + '0'
             else:
@@ -257,7 +262,6 @@ def CheckMessage(Message, AllInfo):
         else:
             FailMassege = 'Ошибка: Вы отсталый... Команда введена не верно...'
             Case = 'Error'
-
 
     CheckInfo = [FailMassege,Case]
     return CheckInfo
@@ -361,8 +365,6 @@ def Completed(Message,AllInfo,CheckInfo,GId,vk,Subj,About,Pass,Gid_2):
 
     elif CheckInfo[1] == 'Random':
         People = random.randint(1,23)
-        #while ((People == 22) or (People == 15)):
-            #People = random.randint(1,23)
         Result = 'Номер: ' + str(People)
 
     elif CheckInfo[1] == 'Sosi':
@@ -388,6 +390,9 @@ def Completed(Message,AllInfo,CheckInfo,GId,vk,Subj,About,Pass,Gid_2):
 
     elif CheckInfo[1] == 'Form_1':
         Result = FormEditor(Subj)
+
+    elif CheckInfo[1] == 'Error':
+        Result = CheckInfo[0]
 
 
     elif CheckInfo[1][0:3] == 'Day':
@@ -420,11 +425,8 @@ def Completed(Message,AllInfo,CheckInfo,GId,vk,Subj,About,Pass,Gid_2):
         else:
             Info = ((AllInfo[int(Message[8])])[str(Message[4])])[int(Message[6])-1]
             if Info == '':
-                Result = 'На сайте Знай Бай, не найдено ДЗ для этого предмета попробуйте позже...'
+                Info = 'На сайте Знай Бай, не найдено ДЗ для этого предмета попробуйте позже...'
             Result = Info
-
-    elif CheckInfo[1] == 'Error':
-        Result = CheckInfo[0]
     
     elif CheckInfo[1] == 'Edit':
         Stop = False
@@ -544,7 +546,7 @@ if SaveData == True:  #Берёт Дз с файла SaveData.txt, чтобы н
     try:            
         VkInfoMessage = vk.messages.getHistory(peer_id = Gid_2, count=1)
     except:
-        Message = {'items': [{'text': ''}]}
+        VkInfoMessage = {'items': [{'text': ''}]}
     Message = VkInfoMessage['items'][0]['text']
     Ht = Message.splitlines()
     if len(Ht) > 60:
