@@ -92,14 +92,12 @@ def GetInfo(AllInfo,data,Gid_2):
 
 #Получает сообщения
 def GetMessage(GId,vk):
-    VkInfoMessage={'items': [{'text': ''}]}
+    VkInfoMessage={'items': [{'text': '','from_id': ''}]}
 
     def GetMes(GId,vk):
-        VkInfoMessage={'items': [{'text': ''}]}
+        VkInfoMessage={'items': [{'text': '','from_id': ''}]}
         try:
-            print('Получение сообщения...')
             VkInfoMessage = vk.messages.getHistory(peer_id = GId, count=1)
-            print('Успешно!')
         except:
             pass
         return VkInfoMessage
@@ -107,8 +105,9 @@ def GetMessage(GId,vk):
     time.sleep(0.3)
     VkInfoMessage = GetMes(GId,vk)
     Message = VkInfoMessage['items'][0]['text']
-
-    return Message
+    Id = 'vk.com/id' + str(VkInfoMessage['items'][0]['from_id'])
+    PersInfo = [Message, Id]
+    return PersInfo
 
 
 
@@ -269,7 +268,7 @@ def CheckMessage(Message, AllInfo):
 
 
 #Эта функция получает Case(из массива CheckInfo) в котором хранится случай(комманда) и функция умеет работать с этими коммандами.
-def Completed(Message,AllInfo,CheckInfo,GId,vk,Subj,About,Pass,Gid_2): 
+def Completed(Message,Id,AllInfo,CheckInfo,GId,vk,Subj,About,Pass,Gid_2): 
 
     def AllHt(AllInfo,Sub):
         def AllWeekHt(AllInfo,Subj,week,Result):
@@ -392,7 +391,7 @@ def Completed(Message,AllInfo,CheckInfo,GId,vk,Subj,About,Pass,Gid_2):
         Result = FormEditor(Subj)
 
     elif CheckInfo[1] == 'Error':
-        Result = CheckInfo[0]
+        Result = CheckInfo[0] + '\n' + 'Пользователь ' + Id + ', введите команду bot.help для изучения команд.'
 
 
     elif CheckInfo[1][0:3] == 'Day':
@@ -586,9 +585,9 @@ while True:
         print('Завершение ' + str(Num + 1) + '-ого обновления базы данных... \nИнформация для разработчика: \n')
 
     else:
-        Message = GetMessage(GId,vk)       #Получение сообщения с беседы VK
-        CheckInfo = CheckMessage(Message,AllInfo)          #Проверка сообщения на принадлежность к команде бота(отправляет Case(случай), если да) и поиск ошибки
-        Result = Completed(Message,AllInfo,CheckInfo,GId,vk,Subj,About,Pass,Gid_2)         #Обработка сообщения с ДЗ или ошибкой
+        PersInfo = GetMessage(GId,vk)       #Получение сообщения с беседы VK
+        CheckInfo = CheckMessage(PersInfo[0],AllInfo)          #Проверка сообщения на принадлежность к команде бота(отправляет Case(случай), если да) и поиск ошибки
+        Result = Completed(PersInfo[0],PersInfo[1],AllInfo,CheckInfo,GId,vk,Subj,About,Pass,Gid_2)         #Обработка сообщения с ДЗ или ошибкой
         SendMessage(GId,vk,Result)            #Отправка сообщения с ДЗ или ошибкой
 
 
