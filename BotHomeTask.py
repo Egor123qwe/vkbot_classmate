@@ -391,7 +391,7 @@ def Completed(Message,Id,AllInfo,CheckInfo,GId,vk,Subj,About,Pass,Gid_2):
         Result = FormEditor(Subj)
 
     elif CheckInfo[1] == 'Error':
-        Result = CheckInfo[0] + '\n' + 'Пользователь ' + Id + ', введите команду bot.help для изучения команд.'
+        Result = CheckInfo[0] + '\n' + Id + ', введите команду bot.help для изучения команд.'
 
 
     elif CheckInfo[1][0:3] == 'Day':
