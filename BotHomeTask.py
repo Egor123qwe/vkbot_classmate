@@ -485,7 +485,7 @@ passw = os.environ.get('passw')
 name = os.environ.get('name')
 
 data = {'UserName': name, 'Password': passw}     
-GId = 2000000047   #Peer_id беседы VK | для основы 2000000047 | для тестов 2000000058
+GId = 2000000058   #Peer_id беседы VK | для основы 2000000047 | для тестов 2000000058
 Gid_2 = 2000000059   #Для облачной БД
 StartTime = time.time()     #Начальное время
 Num = -1      #Колличество раз, обновления базы данных -1 для первого обновления
@@ -552,12 +552,10 @@ if SaveData == True:  #Берёт Дз с файла SaveData.txt, чтобы н
 
 
 
-print('Бот приступил к работе. Для выключения программы зажмите "-"...')
 time.sleep(1)
 
 while True:
     time.sleep(0.5) 
-    print('while')
     Pass = str(math.floor(time.time()-StartTime))
     print('...Works...' + Pass + 'sec')
     WeekNow = datetime.datetime.now().weekday() + 1    #День недели
@@ -569,7 +567,7 @@ while True:
             First = True
         Num = Num + 1        #Количество обновлений базы данных
         AllInfo = GetInfo(AllInfo,data,Gid_2)     #Обновление базы данных
-        print('Завершение ' + str(Num + 1) + '-ого обновления базы данных... \nИнформация для разработчика: \n')
+        print('Завершение ' + str(Num + 1) + '-ого обновления базы данных... ' + str(Time * Num))
 
     else:
         PersInfo = GetMessage(GId,vk)       #Получение сообщения с беседы VK
