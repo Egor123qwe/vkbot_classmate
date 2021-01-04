@@ -132,6 +132,8 @@ def CheckMessage(Message, AllInfo):
             Case = 'Form'
         elif Message[4:8].lower() == 'list':
             Case = 'List'
+        elif Message[4:8].lower() == 'code':
+            Case = 'Code'
         elif Message[4:10].lower() == 'random':
             Case = 'Random'
 
@@ -356,6 +358,14 @@ def Completed(Message,Id,AllInfo,CheckInfo,GId,vk,Subj,About,Pass,Gid_2):
 
     elif CheckInfo[1] == 'List':
         Result = List(Subj)
+        
+    elif CheckInfo[1] == 'Code':
+        trueCode = '0115863'
+        Code = Message[9:16]
+        if (Code == trueCode):
+            Result = 'местоположение'
+        else:
+            Result = 'Неверный код...'
 
     elif CheckInfo[1] == 'Random':
         People = random.randint(1,23)
@@ -485,7 +495,7 @@ passw = os.environ.get('passw')
 name = os.environ.get('name')
 
 data = {'UserName': name, 'Password': passw}     
-GId = 2000000047   #Peer_id беседы VK | для основы 2000000047 | для тестов 2000000058
+GId = 2000000058   #Peer_id беседы VK | для основы 2000000047 | для тестов 2000000058
 Gid_2 = 2000000059   #Для облачной БД
 StartTime = time.time()     #Начальное время
 Num = -1      #Колличество раз, обновления базы данных -1 для первого обновления
