@@ -85,7 +85,8 @@ def GetInfo(AllInfo,data,Gid_2):
         vk.messages.send(peer_id = Gid_2, message = Information, random_id = 0)
     except:
         pass
-
+    
+    print(AllInfo)
     return AllInfo
 
 
