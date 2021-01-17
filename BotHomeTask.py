@@ -65,7 +65,7 @@ def GetInfo(AllInfo,data,Gid_2):
             URL_2 = 'https://znaj.by/Client/GetPupilDiaryAjax?SchoolId=261cc9189b9&ClassId=0077f87a42e&YearStart=' + '2020' + '&PupilId=1423890&WeekNumber=' + str(week + 1) + '&QuarterTitle=3+%D1%87%D0%B5%D1%82%D0%B2%D0%B5%D1%80%D1%82%D1%8C&X-Requested-With=XMLHttpRequest'
             GetHT(session,1,URL_2)
         else:
-            print('Error_login')
+            print('Error_login') 
 
     else:
         for i in range(1,6):
