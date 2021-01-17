@@ -74,16 +74,13 @@ def GetInfo(AllInfo,data,Gid_2):
                 ((AllInfo[1])[str(i)])[f]= ''
 
 
-    Information = '.'
+    Doc = open('D:/Bot/Newfolder/data.txt', 'w', encoding='UTF-8')
     for week in range(0,2):
         for i in range(1,6):
             for f in range(0,len((AllInfo[week])[str(i)])):
                 temp = ((AllInfo[week])[str(i)])[f] + '\n'
-                Information = Information + temp + '.'
-    try:            
-        vk.messages.send(peer_id = Gid_2, message = Information, random_id = 0)
-    except:
-        pass
+                Doc.write(temp)
+    Doc.close()
 
     return AllInfo
 
@@ -333,16 +330,13 @@ def Completed(Message,Id,AllInfo,CheckInfo,GId,vk,Subj,About,Pass,Gid_2):
         return Result
 
     def Refresh(AllInfo):
-        Information = '.'
+        Doc = open('D:/Bot/Newfolder/data.txt', 'w', encoding='UTF-8')
         for week in range(0,2):
             for i in range(1,6):
                 for f in range(0,len((AllInfo[week])[str(i)])):
                     temp = ((AllInfo[week])[str(i)])[f] + '\n'
-                    Information = Information + temp + '.'
-        try:            
-            vk.messages.send(peer_id = Gid_2, message = Information, random_id = 0)
-        except:
-            pass
+                    Doc.write(temp)
+        Doc.close()
 
     def Cleanner(AllInfo,Day,Week):
         for f in range(0,len((AllInfo[Week])[str(Day)])):
@@ -535,32 +529,22 @@ vk = session.get_api()
 
 
 
+
 SaveData = True
 
 if SaveData == True:  #Берёт Дз с файла SaveData.txt, чтобы не потерять Дз, записанное пользователями после отключения программы.
-    try:            
-        VkInfoMessage = vk.messages.getHistory(peer_id = Gid_2, count=1)
-    except:
-        VkInfoMessage = {'items': [{'text': ''}]}
-    Message = VkInfoMessage['items'][0]['text']
-    Ht = Message.splitlines()
-    if len(Ht) > 60:
-        j = 0
-        for week in range(0,2):
-            for i in range(1,6):
-                for f in range(0,len((AllInfo[week])[str(i)])):
-                    try:
-                        Temp = (Ht[j])[1:len(Ht[j])]
-                    except:
-                        Temp = ''
-                    ((AllInfo[week])[str(i)])[f] = Temp
-                    j += 1
+    Doc = open('D:/Bot/Newfolder/data.txt', 'r', encoding='UTF-8')
+    for week in range(0,2):
+        for i in range(1,6):
+            for f in range(0,len((AllInfo[week])[str(i)])):
+                Temp = Doc.readline()
+                ((AllInfo[week])[str(i)])[f] = Temp
+
+    Doc.close()
+    print(AllInfo)
 
 
-
-
-
-
+print('Бот приступил к работе. Для выключения программы зажмите "-"...')
 time.sleep(1)
 
 while True:
