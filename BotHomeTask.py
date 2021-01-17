@@ -74,7 +74,7 @@ def GetInfo(AllInfo,data,Gid_2):
                 ((AllInfo[1])[str(i)])[f]= ''
 
 
-    Doc = open('D:/Bot/Newfolder/data.txt', 'w', encoding='UTF-8')
+    Doc = open('data.txt', 'w', encoding='UTF-8')
     for week in range(0,2):
         for i in range(1,6):
             for f in range(0,len((AllInfo[week])[str(i)])):
@@ -330,7 +330,7 @@ def Completed(Message,Id,AllInfo,CheckInfo,GId,vk,Subj,About,Pass,Gid_2):
         return Result
 
     def Refresh(AllInfo):
-        Doc = open('D:/Bot/Newfolder/data.txt', 'w', encoding='UTF-8')
+        Doc = open('data.txt', 'w', encoding='UTF-8')
         for week in range(0,2):
             for i in range(1,6):
                 for f in range(0,len((AllInfo[week])[str(i)])):
@@ -533,7 +533,7 @@ vk = session.get_api()
 SaveData = True
 
 if SaveData == True:  #Берёт Дз с файла SaveData.txt, чтобы не потерять Дз, записанное пользователями после отключения программы.
-    Doc = open('D:/Bot/Newfolder/data.txt', 'r', encoding='UTF-8')
+    Doc = open('data.txt', 'r', encoding='UTF-8')
     for week in range(0,2):
         for i in range(1,6):
             for f in range(0,len((AllInfo[week])[str(i)])):
