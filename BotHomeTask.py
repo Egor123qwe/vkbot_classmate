@@ -57,13 +57,12 @@ def GetInfo(AllInfo,data,Gid_2):
         responce = session.post(URL, data=data, headers = header)  #авторизация
         if responce.status_code == 200: #если успешно обрабатывает 2 недели
             d = datetime.date.today()
-            year = d.year
             week = d.isocalendar()[1] + 1
 
-            URL_2 = 'https://znaj.by/Client/PupilDiary?pupilId=1423890&yearStart=' + str(year)
+            URL_2 = 'https://znaj.by/Client/PupilDiary?pupilId=1423890&yearStart=' + '2020'
             GetHT(session,0,URL_2)
 
-            URL_2 = 'https://znaj.by/Client/GetPupilDiaryAjax?SchoolId=261cc9189b9&ClassId=0077f87a42e&YearStart=' + str(year) + '&PupilId=1423890&WeekNumber=' + str(week) + '&QuarterTitle=2+%D1%87%D0%B5%D1%82%D0%B2%D0%B5%D1%80%D1%82%D1%8C&X-Requested-With=XMLHttpRequest'
+            URL_2 = 'https://znaj.by/Client/GetPupilDiaryAjax?SchoolId=261cc9189b9&ClassId=0077f87a42e&YearStart=' + '2020' + '&PupilId=1423890&WeekNumber=' + str(week + 1) + '&QuarterTitle=3+%D1%87%D0%B5%D1%82%D0%B2%D0%B5%D1%80%D1%82%D1%8C&X-Requested-With=XMLHttpRequest'
             GetHT(session,1,URL_2)
         else:
             print('Error_login')
@@ -486,8 +485,8 @@ def SendMessage(GId,vk,Result):
 
 
 #Первое заполнение всех элементов
-Week_1 = {'1' : ['','','','','',''], '2' : ['','','','','',''], '3' : ['','','','','','',''], '4' : ['','','','','','',''], '5' : ['','','','','','']}
-Week_2 = {'1' : ['','','','','',''], '2' : ['','','','','',''], '3' : ['','','','','','',''], '4' : ['','','','','','',''], '5' : ['','','','','','']}
+Week_1 = {'1' : ['','','','','','',''], '2' : ['','','','','',''], '3' : ['','','','','',''], '4' : ['','','','','',''], '5' : ['','','','','','','']}
+Week_2 = {'1' : ['','','','','','',''], '2' : ['','','','','',''], '3' : ['','','','','',''], '4' : ['','','','','',''], '5' : ['','','','','','','']}
 AllInfo = [Week_1, Week_2]
      
 my_token = os.environ.get('tok')  #токен VK
