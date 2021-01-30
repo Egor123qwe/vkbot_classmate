@@ -57,7 +57,7 @@ def GetInfo(AllInfo,data,Gid_2):
         responce = session.post(URL, data=data, headers = header)  #авторизация
         if responce.status_code == 200: #если успешно обрабатывает 2 недели
             d = datetime.date.today()
-            week = d.isocalendar()[1] + 2
+            week = d.isocalendar()[1] + 1
 
             URL_2 = 'https://znaj.by/Client/PupilDiary?pupilId=1423890&yearStart=' + '2020'
             GetHT(session,0,URL_2)
